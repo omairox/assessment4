@@ -1,4 +1,4 @@
-const toDoList = [
+let toDoList = [
     { 
         id: 1,
         item: "clean my snail's room"
@@ -57,6 +57,13 @@ module.exports = {
         const {id} = req.params
         const itemIndex = toDoList.findIndex(item => item.id === +id)
         toDoList.splice(itemIndex,1)
+        res.status(200).send(toDoList)
+    },
+
+    completeItem: (req,res) => {
+        const {id} = req.params
+        const itemIndex = toDoList.findIndex(item => item.id === +id)
+        toDoList[itemIndex].item = toDoList[itemIndex].item + ' (completed)'
         res.status(200).send(toDoList)
     }
 }

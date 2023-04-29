@@ -32,7 +32,8 @@ const showList = (arr) => {
     arr.map(item => {
         const itemCard = document.createElement('div')
         itemCard.innerHTML = `<h4>${item.item}</h4>
-        <button onclick='deleteItem(${item.id})'>delete</button>`
+        <button onclick='deleteItem(${item.id})'>delete</button>
+        <button onclick='completeItem(${item.id})'>complete</button>`
 
         displaySection.appendChild(itemCard)
     })
@@ -55,6 +56,10 @@ const deleteItem = (id) => {
     .then(res => getList(res.data))
 }
 
+const completeItem = (id) => {
+    axios.put(`${BaseURL}/api/complete/${id}`)
+    .then(res => getList(res.data))
+}
 
 
 
